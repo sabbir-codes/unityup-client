@@ -17,14 +17,15 @@ export function Banner() {
       />
       <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
-      <div className="relative z-[1] mx-auto flex w-full max-w-5xl flex-col items-center">
-        <div className="mb-7 rounded-full border border-white/70 bg-gradient-to-r from-[#e90046] to-[#ba003d] px-7 py-1.5 text-xs font-bold tracking-[0.14em] shadow-lg sm:text-sm">
+      <div className="relative z-1 mx-auto flex w-full max-w-5xl flex-col items-center">
+        <div className="mb-7 rounded-full border border-white/70 bg-linear-to-r from-[#e90046] to-[#ba003d] px-7 py-1.5 text-xs font-bold tracking-[0.14em] shadow-lg sm:text-sm">
           <span aria-hidden="true">✦</span> Together For A Better Tomorrow
         </div>
 
         <h1 className="max-w-4xl text-4xl font-black uppercase leading-[1.08] tracking-wide sm:text-6xl lg:text-[68px]">
           Small Actions.
-          <span className="mt-2 block text-[#e90046]">Lasting Impact.</span>
+          <span className="mt-2 block text-[#e90046]  [-webkit-text-stroke:1px_white]">
+            Lasting Impact</span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-[11px] leading-relaxed tracking-wide text-white/90 sm:text-sm">

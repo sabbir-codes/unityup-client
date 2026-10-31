@@ -12,9 +12,9 @@ export function Navbar() {
             alt=""
             width={100}
             height={100}
-            className="h-20 w-20 object-cover object-center"
+            className="h-40 w-40 object-cover object-center"
           />
-          <span className="-ml-5 leading-none">
+          <span className="-ml-12 leading-none">
             <span className="block text-sm font-bold tracking-[0.32em] text-[#f7255d]">
               UnityUp
             </span>

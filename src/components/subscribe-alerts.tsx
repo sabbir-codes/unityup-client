@@ -20,14 +20,14 @@ export function SubscribeAlerts() {
         </div>
 
         <div className="relative flex flex-col justify-center px-6 pb-8 pt-4 text-center sm:px-10 lg:pb-8 lg:pt-8 lg:text-left">
-          <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#ffe0e4] px-4 py-1.5 text-[9px] font-extrabold tracking-[0.05em] text-[#d90020] lg:mx-0"><Bell className="size-3 fill-current" /> STAY CONNECTED</div>
+          <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full bg-[#ffe0e4] px-4 py-1.5 text-[12px] font-extrabold tracking-[0.05em] text-[#d90020] lg:mx-0"><Bell className="size-3 fill-current" /> STAY CONNECTED</div>
           <h2 className="text-3xl font-black leading-[1.05] tracking-tight text-[#101b3b] sm:text-[36px]">Subscribe to Local<br /><span className="text-[#c90022]">Cause Alerts</span></h2>
-          <p className="mt-4 max-w-[410px] text-[10px] font-medium leading-relaxed text-[#647084] sm:text-xs">Get notified about new events, volunteer opportunities,<br className="hidden sm:block" /> and urgent community causes in your area.</p>
+          <p className="mt-4 max-w-[410px] text-[11px] font-medium leading-relaxed text-[#647084] sm:text-[11px]">Get notified about new events, volunteer opportunities,<br className="hidden sm:block" /> and urgent community causes in your area.</p>
           <form className="mt-5 flex max-w-[440px] flex-col gap-2 sm:flex-row" action="#subscribe">
-            <label className="flex h-10 flex-1 items-center gap-2 rounded-full border border-[#d7e1e0] bg-white px-4 text-[10px] text-[#8a949d] shadow-sm"><Mail className="size-4 text-[#526172]" /><span className="sr-only">Email address</span><input type="email" placeholder="Enter your email address..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-[#8a949d]" required /></label>
-            <button type="submit" className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#d90020] px-6 text-[10px] font-bold text-white shadow-md shadow-red-200 hover:bg-[#b9001b]"><Bell className="size-3.5 fill-current" /> Subscribe</button>
+            <label className="flex h-10 flex-1 items-center gap-2 rounded-full border border-[#d7e1e0] bg-white px-4 text-[11px] text-[#8a949d] shadow-sm"><Mail className="size-4 text-[#526172]" /><span className="sr-only">Email address</span><input type="email" placeholder="Enter your email address..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-[#8a949d]" required /></label>
+            <button type="submit" className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#d90020] px-6 text-[12px] font-bold text-white shadow-md shadow-red-200 hover:bg-[#b9001b]"><Bell className="size-3.5 fill-current" /> Subscribe</button>
           </form>
-          <p className="mt-4 text-[9px] font-medium text-[#687486]"><CheckCircle2 className="mr-1 inline size-3.5 text-[#14956f]" /> We respect your privacy. No spam, ever.</p>
+          <p className="mt-4 text-[11px] font-medium text-[#687486]"><CheckCircle2 className="mr-1 inline size-3.5 text-[#14956f]" /> We respect your privacy. No spam, ever.</p>
         </div>
       </div>
     </section>

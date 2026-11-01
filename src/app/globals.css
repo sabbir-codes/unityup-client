@@ -128,3 +128,12 @@
     @apply font-sans;
   }
 }
+
+@layer components {
+  .winter { background: linear-gradient(180deg, #173d61 0%, #658aa7 68%, #dbe4e6 69%); }
+  .trees { background: linear-gradient(180deg, #a9e0f0 0%, #d7f2dc 58%, #438a4b 59%, #2f703a 100%); }
+  .boxes { background: linear-gradient(180deg, #f6d1a0 0%, #d99b6c 66%, #9d6748 67%, #875237 100%); }
+  .cleanup { background: linear-gradient(180deg, #9edce9 0%, #c5e9d7 58%, #438957 59%, #315f47 100%); }
+  .food { background: linear-gradient(180deg, #ec5d08 0%, #f27815 54%, #782511 55%, #541a11 100%); }
+  .blood { background: linear-gradient(180deg, #df061c 0%, #a8001e 54%, #790014 100%); }
+}

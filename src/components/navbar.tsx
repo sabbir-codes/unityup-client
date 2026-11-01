@@ -1,49 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, LogIn, Moon } from "lucide-react";
+import {
+  CalendarDays,
+  ChevronDown,
+  CirclePlus,
+  Home,
+  Info,
+  Mail,
+  Search,
+  UserRound,
+} from "lucide-react";
 
 export function Navbar() {
   return (
-    <header className="absolute inset-x-0 top-0 z-10 bg-dark/50 backdrop-blur-sm">
-      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5 sm:px-8">
-        <Link href="/" className="flex items-center gap-2 text-white" aria-label="UnityUp home">
-          <Image
-            src="/images/unityup.png"
-            alt=""
-            width={100}
-            height={100}
-            className="h-40 w-40 object-cover object-center"
-          />
-          <span className="-ml-12 leading-none">
-            <span className="block text-sm font-bold tracking-[0.32em] text-[#f7255d]">
-              UnityUp
-            </span>
-            <span className="mt-1 block text-[10px] font-bold tracking-[0.08em] text-white/80">
-              BETTER FUTURE
-            </span>
+    <header className="absolute inset-x-0 top-0 z-20 px-4 pt-4 sm:px-8">
+      <nav className="mx-auto flex h-14 max-w-full items-center justify-between rounded-full border border-slate-100 bg-white/95 px-4 shadow-[0_8px_24px_rgba(20,31,61,0.12)] backdrop-blur sm:px-7">
+        <Link href="/" className="flex items-center gap-2" aria-label="UnityUp home">
+          <span className="relative size-9 overflow-hidden">
+            <Image src="/images/unityup.png" alt="" fill sizes="36px" className="scale-[3.4] object-contain" />
+          </span>
+          <span className="text-[20px] font-extrabold tracking-tight text-[#101b3b]">
+            Unity<span className="text-[#e90046]">Up</span>
           </span>
         </Link>
 
-        <div className="flex items-center gap-2 text-xs font-semibold sm:gap-4 sm:text-sm">
-          <a
-            href="#events"
-            className="hidden items-center gap-2 text-white transition-colors hover:text-[#f7255d] sm:flex"
-          >
-            <CalendarDays className="size-4" />
-            Upcoming Events
-          </a>
-          <button
-            type="button"
-            aria-label="Toggle dark mode"
-            className="text-white transition-colors hover:text-[#f7255d]"
-          >
-            <Moon className="size-4 fill-current" />
-          </button>
+        <div className="hidden items-center gap-5 text-[10px] font-bold text-[#17213d] lg:flex">
+          <a href="#home" className="flex items-center gap-1.5 rounded-full bg-[#e90046] px-3 py-2 text-white"><Home className="size-3.5 fill-current" /> Home</a>
+          <a href="#events" className="flex items-center gap-1.5 hover:text-[#e90046]"><CalendarDays className="size-3.5" /> Events <ChevronDown className="size-3" /></a>
+          <a href="#create-event" className="flex items-center gap-1.5 hover:text-[#e90046]"><CirclePlus className="size-3.5 fill-current" /> Create Event</a>
+          <a href="#about" className="flex items-center gap-1.5 hover:text-[#e90046]"><Info className="size-3.5 fill-current" /> About</a>
+          <a href="#contact" className="flex items-center gap-1.5 hover:text-[#e90046]"><Mail className="size-3.5 fill-current" /> Contact</a>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="hidden h-8 w-36 items-center gap-2 rounded-full bg-[#f5f6f8] px-3 text-[10px] text-slate-400 sm:flex">
+            <Search className="size-3.5 text-[#17213d]" /> Search events...
+          </div>
           <a
             href="/login"
-            className="inline-flex items-center gap-1.5 rounded-md bg-[#e90046] px-3 py-2 text-white shadow-lg shadow-black/20 transition-colors hover:bg-[#c9003e]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#e90046] px-4 py-2 text-[10px] font-bold text-white shadow-lg shadow-red-200 transition-colors hover:bg-[#c9003e]"
           >
-            <LogIn className="size-3.5" />
+            <UserRound className="size-3.5 fill-current" />
             Login
           </a>
         </div>

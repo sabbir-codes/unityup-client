@@ -4,6 +4,7 @@ import { WhyUnityUp } from "@/components/why-unityup";
 import { UpcomingEvents } from "@/components/upcoming-events";
 import { CommunityAction } from "@/components/community-action";
 import { SubscribeAlerts } from "@/components/subscribe-alerts";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <UpcomingEvents />
       <CommunityAction />
       <SubscribeAlerts />
+      <SiteFooter />
     </main>
   );
 }

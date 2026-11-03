@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ArrowRight, CalendarDays, MapPin, Tag, UserRound } from "lucide-react";
 
 const EVENTS_URL = "http://localhost:5000/events";
@@ -11,6 +12,19 @@ type Event = {
   location: string;
   imageUrl: string;
   description: string;
+=======
+const AllEventsPage = async () => {
+
+    const res = await fetch("http://localhost:5000/events");
+    const data = await res.json();
+    return data;
+
+    return (
+        <div>
+            
+        </div>
+    );
+>>>>>>> be8af600aa8dcab605044d13f9cceadff3012bad
 };
 
 const typeStyles: Record<string, string> = {

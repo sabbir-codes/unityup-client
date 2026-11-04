@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ArrowRight, CalendarDays, MapPin, Tag, UserRound } from "lucide-react";
 
 const EVENTS_URL = "http://localhost:5000/events";
@@ -12,21 +11,7 @@ type Event = {
   location: string;
   imageUrl: string;
   description: string;
-=======
-const AllEventsPage = async () => {
-
-    const res = await fetch("http://localhost:5000/events");
-    const data = await res.json();
-    return data;
-
-    return (
-        <div>
-            
-        </div>
-    );
->>>>>>> be8af600aa8dcab605044d13f9cceadff3012bad
 };
-
 const typeStyles: Record<string, string> = {
   Donation: "text-[#e00046]",
   Education: "text-[#f39a00]",
@@ -49,7 +34,7 @@ async function getEvents(): Promise<Event[]> {
   if (!res.ok) throw new Error("Unable to load events");
 
   const data: Event[] | { events?: Event[] } = await res.json();
-  return Array.isArray(data) ? data : data.events ?? [];
+  return Array.isArray(data) ? data : (data.events ?? []);
 }
 
 function EventCard({ event }: { event: Event }) {
@@ -62,7 +47,9 @@ function EventCard({ event }: { event: Event }) {
         style={{ backgroundImage: `url(${event.imageUrl})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/5" />
-        <span className={`absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[10px] font-bold shadow-sm ${typeColor}`}>
+        <span
+          className={`absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[10px] font-bold shadow-sm ${typeColor}`}
+        >
           <Tag className="size-3" />
           {event.type}
         </span>
@@ -73,7 +60,10 @@ function EventCard({ event }: { event: Event }) {
       </div>
 
       <div className="flex min-h-[186px] flex-col p-4">
-        <h2 className="truncate text-[14px] font-extrabold text-[#071337]" title={event.title}>
+        <h2
+          className="truncate text-[14px] font-extrabold text-[#071337]"
+          title={event.title}
+        >
           {event.title}
         </h2>
         <div className="mt-2 flex items-center gap-1 text-[10px] text-[#667b8b]">
@@ -113,7 +103,9 @@ export default async function AllEventsPage() {
     <main className="min-h-screen bg-[#f7fafb] px-5 py-10 text-[#071337] sm:px-8">
       <div className="mx-auto max-w-[974px]">
         <header className="mb-8 text-center">
-          <h1 className="text-2xl font-black tracking-tight sm:text-3xl">All Community Events</h1>
+          <h1 className="text-2xl font-black tracking-tight sm:text-3xl">
+            All Community Events
+          </h1>
           <div className="mx-auto mt-2 h-0.5 w-12 bg-[#C70013]" />
           <p className="mt-3 text-[11px] font-medium text-[#667b8b]">
             Find an opportunity to make a difference in your community.
@@ -121,16 +113,22 @@ export default async function AllEventsPage() {
         </header>
 
         {error && (
-          <p className="rounded-xl border border-red-200 bg-red-50 p-6 text-center text-sm text-red-700">{error}</p>
+          <p className="rounded-xl border border-red-200 bg-red-50 p-6 text-center text-sm text-red-700">
+            {error}
+          </p>
         )}
 
         {!error && events.length === 0 && (
-          <p className="rounded-xl border border-[#dfe5e7] bg-white p-6 text-center text-sm text-[#667b8b]">No events are available yet.</p>
+          <p className="rounded-xl border border-[#dfe5e7] bg-white p-6 text-center text-sm text-[#667b8b]">
+            No events are available yet.
+          </p>
         )}
 
         {!error && events.length > 0 && (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event) => <EventCard key={event._id} event={event} />)}
+            {events.map((event) => (
+              <EventCard key={event._id} event={event} />
+            ))}
           </div>
         )}
       </div>

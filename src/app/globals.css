@@ -123,6 +123,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    padding-top: 70px;
   }
   html {
     @apply font-sans;
@@ -130,8 +131,124 @@
 }
 
 @layer components {
-  body:has(.add-event-page) > header,
-  body:has(.add-event-page) > footer { display: none; }
+  html.dark body {
+    background: #0b1220;
+    color: #e5edf5;
+    color-scheme: dark;
+  }
+
+  html.dark .site-navbar nav {
+    background: #111827 !important;
+    border-color: #33445a !important;
+  }
+
+  html.dark .site-navbar nav > div:nth-child(2) {
+    color: #e5edf5;
+  }
+
+  html.dark .site-footer {
+    background: #0b1220 !important;
+    color: #e5edf5 !important;
+  }
+
+  html.dark .site-footer h2,
+  html.dark .site-footer h3,
+  html.dark .site-footer span,
+  html.dark .site-footer a {
+    color: #e5edf5;
+  }
+
+  html.dark .site-footer p,
+  html.dark .site-footer li {
+    color: #9aacc0;
+  }
+
+  html.dark header nav {
+    border-color: #263449;
+    background-color: #111827;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  html.dark main,
+  html.dark main section,
+  html.dark main article {
+    background-color: #111827;
+    color: #e5edf5;
+  }
+
+  html.dark main > section,
+  html.dark main > div > section {
+    background-color: #111827 !important;
+  }
+
+  html.dark footer,
+  html.dark .bg-white,
+  html.dark [data-slot="dialog-content"],
+  html.dark [data-slot="alert-dialog-content"] {
+    background-color: #111827 !important;
+    color: #e5edf5;
+  }
+
+  html.dark [class*="bg-[#f7fafb]"],
+  html.dark [class*="bg-[#f7f9fb]"],
+  html.dark [class*="bg-[#f7f9fc]"],
+  html.dark [class*="bg-[#f6fafb]"],
+  html.dark [class*="bg-[#f8fafc]"] {
+    background-color: #0b1220 !important;
+  }
+
+  html.dark [class*="border-[#dce"],
+  html.dark [class*="border-[#dfe"],
+  html.dark [class*="border-[#d9"],
+  html.dark [class*="border-[#ea"] {
+    border-color: #2b3a4f !important;
+  }
+
+  html.dark [class*="text-[#071337]"],
+  html.dark [class*="text-[#17213d]"],
+  html.dark [class*="text-[#101b3b]"],
+  html.dark [class*="text-[#243047]"],
+  html.dark [class*="text-[#33466a]"],
+  html.dark [class*="text-[#354053]"],
+  html.dark [class*="text-[#27324c]"],
+  html.dark [class*="text-[#687486]"],
+  html.dark [class*="text-[#4c5869]"] {
+    color: #e5edf5 !important;
+  }
+
+  html.dark [class*="text-[#60798b]"],
+  html.dark [class*="text-[#667b8b]"],
+  html.dark [class*="text-[#687b99]"],
+  html.dark [class*="text-[#647084]"],
+  html.dark [class*="text-[#5f7895"] {
+    color: #9aacc0 !important;
+  }
+
+  html.dark input,
+  html.dark textarea,
+  html.dark select,
+  html.dark [data-slot="select-trigger"] {
+    border-color: #33445a;
+    background-color: #172235;
+    color: #e5edf5;
+  }
+
+  html.dark [class*="bg-[#f5f6f8]"],
+  html.dark [class*="bg-[#eff4f8]"],
+  html.dark [class*="bg-[#f8fafc]"] {
+    background-color: #172235 !important;
+  }
+
+  html.dark [class*="bg-[#fff0f1]"],
+  html.dark [class*="bg-[#fff1f3]"],
+  html.dark [class*="bg-[#eeebff]"] {
+    background-color: #30202c !important;
+  }
+
+  html.dark [data-slot="dialog-description"],
+  html.dark [data-slot="alert-dialog-description"] {
+    color: #9aacc0;
+  }
 
   .winter { background: linear-gradient(180deg, #173d61 0%, #658aa7 68%, #dbe4e6 69%); }
   .trees { background: linear-gradient(180deg, #a9e0f0 0%, #d7f2dc 58%, #438a4b 59%, #2f703a 100%); }

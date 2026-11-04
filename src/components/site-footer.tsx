@@ -1,8 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Heart, MapPin, Send, UsersRound, Zap } from "lucide-react";
 
-const quickLinks = ["Browse Events", "Create an Event", "About UnityUp", "Our Impact", "Contact Us"];
-const resources = ["Help Center", "Community Guidelines", "For Organizers", "FAQs", "Privacy Policy"];
+const quickLinks = [
+  { label: "Browse Events", href: "/events" },
+  { label: "Create an Event", href: "/add-event" },
+  { label: "About UnityUp", href: "/#about" },
+  { label: "Our Impact", href: "/#about" },
+  { label: "Contact Us", href: "mailto:community@unityup.org" },
+];
+const resources = [
+  { label: "Help Center", href: "/#contact" },
+  { label: "Community Guidelines", href: "/#about" },
+  { label: "For Organizers", href: "/events/manage" },
+  { label: "FAQs", href: "/#contact" },
+  { label: "Privacy Policy", href: "/#about" },
+];
 
 function BrandMark() {
   return <span className="relative inline-block size-12"><Image src="/images/unityup-mark.png" alt="UnityUp logo" fill sizes="48px" className="object-contain" /></span>;
@@ -10,7 +23,7 @@ function BrandMark() {
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden bg-white px-5 pt-5 text-[#17213d] sm:px-8">
+    <footer className="site-footer relative overflow-hidden bg-white px-5 pt-5 text-[#17213d] sm:px-8">
       <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-[28px] bg-[#fff0f1] px-6 py-6 shadow-sm sm:px-10">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-[#f8c4ca] [clip-path:polygon(0_42%,12%_67%,25%_35%,40%_72%,55%_42%,70%_75%,84%_38%,100%_62%,100%_100%,0_100%)]" />
         <div className="relative flex flex-col items-center justify-between gap-5 lg:flex-row">
@@ -31,10 +44,11 @@ export function SiteFooter() {
   );
 }
 
-function FooterList({ title, icon, items }: { title: string; icon: React.ReactNode; items: string[] }) {
-  return <div><h3 className="flex items-center gap-2 text-base font-extrabold">{icon}{title}</h3><ul className="mt-3 space-y-2 text-[11px] text-[#354053]">{items.map((item) => <li key={item}><a href="#home" className="hover:text-[#d90020]"><ArrowRight className="mr-2 inline size-3 text-[#d90020]" />{item}</a></li>)}</ul></div>;
+function FooterList({ title, icon, items }: { title: string; icon: React.ReactNode; items: { label: string; href: string }[] }) {
+  return <div><h3 className="flex items-center gap-2 text-base font-extrabold">{icon}{title}</h3><ul className="mt-3 space-y-2 text-[11px] text-[#354053]">{items.map((item) => <li key={item.label}><Link href={item.href} className="hover:text-[#d90020]"><ArrowRight className="mr-2 inline size-3 text-[#d90020]" />{item.label}</Link></li>)}</ul></div>;
 }
 
 function Social({ label }: { label: string }) {
-  return <a href="#contact" aria-label={`UnityUp ${label}`} className="flex size-9 items-center justify-center rounded-xl bg-[#ffe4e7] text-[12px] font-extrabold text-[#d90020] hover:bg-[#ffd1d7]">{label}</a>;
+  const socialLinks: Record<string, string> = { f: "https://www.facebook.com", "𝕏": "https://x.com", "▶": "https://www.youtube.com", in: "https://www.linkedin.com", "◉": "https://www.instagram.com" };
+  return <a href={socialLinks[label]} target="_blank" rel="noreferrer" aria-label={`UnityUp ${label}`} className="flex size-9 items-center justify-center rounded-xl bg-[#ffe4e7] text-[12px] font-extrabold text-[#d90020] hover:bg-[#ffd1d7]">{label}</a>;
 }

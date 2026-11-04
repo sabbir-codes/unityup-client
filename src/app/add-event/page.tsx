@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import {
@@ -45,9 +46,10 @@ const initialForm: EventForm = {
 };
 
 export default function AddEventPage() {
+  const router = useRouter();
   const [form, setForm] = useState<EventForm>(initialForm);
-
-  console.log(form);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const update = (field: keyof EventForm, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -55,20 +57,30 @@ export default function AddEventPage() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
 
-    const res = await fetch("http://localhost:5000/add-event", {
+    try {
+      const res = await fetch("http://localhost:5000/add-event", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
+      });
 
-    });
+      if (!res.ok) {
+        throw new Error("Unable to create event");
+      }
 
-    const data = await res.json();
-    console.log(data);
-
-    // console.log("Event data:", form);
+      router.push("/events");
+    } catch {
+      setSubmitError(
+        "We could not create your event. Please check your details and try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,10 +107,7 @@ export default function AddEventPage() {
             support drive.
           </p>
 
-          <form
-            className="mt-6 space-y-[15px]"
-            onSubmit={handleSubmit}
-          >
+          <form className="mt-6 space-y-[15px]" onSubmit={handleSubmit}>
             <Field label="Event Title" required icon={<Type />}>
               <Input
                 required
@@ -112,7 +121,10 @@ export default function AddEventPage() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Event Type" required icon={<Tag />}>
-                <Select value={form.type} onValueChange={(value) => update("type", value ?? "")}>
+                <Select
+                  value={form.type}
+                  onValueChange={(value) => update("type", value ?? "")}
+                >
                   <SelectTrigger className="h-9 w-full border-[#d9e2ec] bg-[#f8fafc] pl-8 text-[11px] text-[#33466a] shadow-[0_1px_3px_rgba(20,40,60,0.14)]">
                     <SelectValue />
                   </SelectTrigger>
@@ -193,19 +205,29 @@ export default function AddEventPage() {
               </strong>
             </div>
 
+            {submitError && (
+              <p
+                role="alert"
+                className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[10px] text-red-700"
+              >
+                {submitError}
+              </p>
+            )}
+
             <Button
               type="submit"
+              disabled={isSubmitting}
               className="h-9 w-full rounded-lg bg-[#C70013] text-[11px] font-bold text-white shadow-[0_3px_5px_rgba(199,0,19,0.25)] hover:bg-[#a60010]"
             >
-              <CirclePlus className="size-3.5" />{" "}
-              Create Event
+              <CirclePlus className="size-3.5" />
+              {isSubmitting ? "Creating Event..." : "Create Event"}
             </Button>
           </form>
         </section>
       </div>
     </main>
   );
-};
+}
 
 function Field({
   label,

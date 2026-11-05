@@ -45,11 +45,17 @@ function formatDate(date: string) {
 async function getEvent(id: string): Promise<EventDetails> {
 
 
-  const token = await auth.api.getToken({
+  const jwtToken = await auth.api.getToken({
     headers: await headers()
   });
 
-  const response = await fetch(`http://localhost:5000/events/${id}`);
+  console.log(jwtToken?.token); 
+
+  const response = await fetch(`http://localhost:5000/events/${id}`, {
+    headers: {
+      authorization: jwtToken?.token,
+    },
+  });
 
   if (!response.ok) throw new Error("Unable to load this event");
 

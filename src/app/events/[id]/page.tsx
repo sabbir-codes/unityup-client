@@ -3,7 +3,6 @@ import {
   ArrowLeft,
   CalendarDays,
   Check,
-  HeartHandshake,
   Mail,
   MapPin,
   Share2,
@@ -11,6 +10,7 @@ import {
   UserRound,
   UsersRound,
 } from "lucide-react";
+import { JoinEventButton } from "@/components/join-event-button";
 
 type EventDetails = {
   _id: string;
@@ -147,12 +147,7 @@ export default async function EventDetailsPage({
                 >
                   <Share2 className="size-3.5" />
                 </button>
-                <button
-                  type="button"
-                  className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-[#C70013] px-5 text-[11px] font-bold text-white shadow-[0_4px_8px_rgba(199,0,19,0.2)] transition-colors hover:bg-[#a60010]"
-                >
-                  <HeartHandshake className="size-3.5" /> Join Event
-                </button>
+                <JoinEventButton event={event} />
               </div>
             </div>
 

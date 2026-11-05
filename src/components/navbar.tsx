@@ -5,9 +5,10 @@ import {
   CirclePlus,
   Home,
   ListTodo,
-  UserRound,
+  LogOut,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ProfileMenu } from "@/components/profile-menu";
 
 export function Navbar() {
   return (
@@ -57,17 +58,21 @@ export function Navbar() {
           >
             <ListTodo className="size-4" /> Manage Events
           </Link>
+          <Link href="/events/joined" className="flex items-center gap-1.5 hover:text-[#e90046]">
+            <ListTodo className="size-4" /> Joined Event
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Link
-            href="/events/manage"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#e90046] px-4 py-2 text-[12px] font-bold text-white shadow-lg shadow-red-200 transition-colors hover:bg-[#c9003e]"
+          <ProfileMenu />
+          <button
+            type="button"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#e90046] px-3.5 py-2 text-[11px] font-bold text-white shadow-lg shadow-red-200 transition-colors hover:bg-[#c9003e]"
           >
-            <UserRound className="size-4 fill-current" />
-            Login
-          </Link>
+            <LogOut className="size-3.5" />
+            Logout
+          </button>
         </div>
       </nav>
     </header>

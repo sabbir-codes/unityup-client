@@ -4,6 +4,7 @@ import { ArrowRight, Heart, MapPin, Send, UsersRound, Zap } from "lucide-react";
 
 const quickLinks = [
   { label: "Browse Events", href: "/events" },
+  { label: "Joined Event", href: "/events/joined" },
   { label: "Create an Event", href: "/add-event" },
   { label: "About UnityUp", href: "/#about" },
   { label: "Our Impact", href: "/#about" },

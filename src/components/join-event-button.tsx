@@ -13,15 +13,21 @@ import {
 } from "@/lib/joined-events";
 
 export function JoinEventButton({ event }: { event: JoinedEvent }) {
-  const router = useRouter();
-  const { data: session, isPending: isSessionPending } = authClient.useSession();
+  const { isPending: isSessionPending } = authClient.useSession();
   const [joined, setJoined] = useState(false);
 
   useEffect(() => {
     let active = true;
-    Promise.resolve().then(() => {
-      if (active) setJoined(getJoinedEvents().some((item) => item._id === event._id));
-    });
+
+    async function loadJoinedStatus() {
+      const joinedEvents = await Promise.resolve(getJoinedEvents());
+      if (active) {
+        setJoined(joinedEvents.some((item) => item._id === event._id));
+      }
+    }
+
+    loadJoinedStatus();
+
     return () => {
       active = false;
     };
@@ -29,11 +35,6 @@ export function JoinEventButton({ event }: { event: JoinedEvent }) {
 
   function handleClick() {
     if (isSessionPending) return;
-
-    if (!session) {
-      router.push(`/login?redirect=${encodeURIComponent(`/events/${event._id}`)}`);
-      return;
-    }
 
     if (joined) {
       removeJoinedEvent(event._id);

@@ -5,10 +5,10 @@ import {
   CirclePlus,
   Home,
   ListTodo,
-  LogOut,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ProfileMenu } from "@/components/profile-menu";
+import { LogoutButton } from "@/components/logout-button";
 
 export function Navbar() {
   return (
@@ -66,13 +66,9 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <ProfileMenu />
-          <button
-            type="button"
+          <LogoutButton
             className="inline-flex items-center gap-1.5 rounded-full bg-[#e90046] px-3.5 py-2 text-[11px] font-bold text-white shadow-lg shadow-red-200 transition-colors hover:bg-[#c9003e]"
-          >
-            <LogOut className="size-3.5" />
-            Logout
-          </button>
+          />
         </div>
       </nav>
     </header>

@@ -131,6 +131,10 @@
 }
 
 @layer components {
+  body:has(.register-page) {
+    padding-top: 70px;
+  }
+
   html.dark body {
     background: #0b1220;
     color: #e5edf5;

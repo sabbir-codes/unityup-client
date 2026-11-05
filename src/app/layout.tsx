@@ -3,6 +3,8 @@ import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { Navbar } from "@/components/navbar";
+import { Toaster } from "@/components/ui/toast";
+import { AuthToastListener } from "@/components/auth-toast-listener";
 
 const notoSans = Noto_Sans({ subsets: ["latin"] });
 
@@ -38,9 +40,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${notoSans.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
-        <SiteFooter />
+          <Navbar />
+          {children}
+          <Toaster />
+          <AuthToastListener />
+          <SiteFooter />
       </body>
     </html>
   );

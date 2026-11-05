@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/toast";
 
 type EventForm = {
   title: string;
@@ -73,6 +74,11 @@ export default function AddEventPage() {
         throw new Error("Unable to create event");
       }
 
+      toast.add({
+        title: "Event created successfully",
+        description: "Your community event is now available to volunteers.",
+        type: "success",
+      });
       router.push("/events");
     } catch {
       setSubmitError(

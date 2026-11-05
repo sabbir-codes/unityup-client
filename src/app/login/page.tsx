@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useState, type FormEvent } from "react"
 import { authClient } from "@/lib/auth-client"
 import { GoogleAuthButton } from "@/components/google-auth-button"
+import { toast } from "@/components/ui/toast"
 
 const accent = "#C70013"
 
@@ -31,6 +32,7 @@ export default function LoginPage() {
         return
       }
 
+      toast.add({ title: "Login successful", description: "Welcome back to UnityUp.", type: "success" })
       router.replace(getRedirectDestination())
       router.refresh()
     } catch {

@@ -14,7 +14,7 @@ export function GoogleAuthButton({ redirectTo }: { redirectTo?: string }) {
     try {
       const result = await authClient.signIn.social({
         provider: "google",
-        callbackURL: redirectTo ?? getRedirectDestination(),
+        callbackURL: addSuccessMarker(redirectTo ?? getRedirectDestination()),
       })
 
       if (result.error) {
@@ -47,4 +47,9 @@ function getRedirectDestination() {
   const params = new URLSearchParams(window.location.search)
   const destination = params.get("redirect") ?? params.get("callbackUrl")
   return destination?.startsWith("/") && !destination.startsWith("//") ? destination : "/"
+}
+
+function addSuccessMarker(destination: string) {
+  const separator = destination.includes("?") ? "&" : "?"
+  return `${destination}${separator}auth=google-success`
 }

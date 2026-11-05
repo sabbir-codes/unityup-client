@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   CalendarDays,
+  CalendarPlus,
   CirclePlus,
   Home,
   ListTodo,
@@ -35,31 +36,10 @@ export function Navbar() {
 
         <div className="hidden items-center gap-5 text-[12px] font-bold text-[#17213d] lg:flex">
           <Link
-            href="/"
-            className="flex items-center gap-1.5 rounded-full bg-[#e90046] px-3 py-2 text-white"
-          >
-            <Home className="size-4 fill-current" /> Home
-          </Link>
-          <Link
             href="/events"
             className="flex items-center gap-1.5 hover:text-[#e90046]"
           >
-            <CalendarDays className="size-4" /> Events{" "}
-          </Link>
-          <Link
-            href="/add-event"
-            className="flex items-center gap-1.5 hover:text-[#e90046]"
-          >
-            <CirclePlus className="size-4 fill-current" /> Create Event
-          </Link>
-          <Link
-            href="/events/manage"
-            className="flex items-center gap-1.5 hover:text-[#e90046]"
-          >
-            <ListTodo className="size-4" /> Manage Events
-          </Link>
-          <Link href="/events/joined" className="flex items-center gap-1.5 hover:text-[#e90046]">
-            <ListTodo className="size-4" /> Joined Event
+            <CalendarDays className="size-4" /> Upcoming Events{" "}
           </Link>
         </div>
 

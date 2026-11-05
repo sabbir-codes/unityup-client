@@ -2,11 +2,13 @@ import {
   ArrowRight,
   CalendarDays,
   CalendarPlus,
+  CirclePlus,
   Heart,
   Leaf,
   Users,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 const stats: [string, string, LucideIcon][] = [
   ["1,200+", "Active Volunteers", Users],
@@ -51,12 +53,12 @@ export function Banner() {
               <CalendarDays className="size-4" /> Explore Events{" "}
               <ArrowRight className="size-4" />
             </a>
-            <a
-              href="#create-event"
+            <Link
+              href="/add-event"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e90046] bg-white px-5 py-3 text-[12px] font-bold text-[#17213d] transition-colors hover:bg-red-50"
             >
               <CalendarPlus className="size-4 text-[#e90046]" /> Create an Event
-            </a>
+            </Link>
           </div>
         </div>
 

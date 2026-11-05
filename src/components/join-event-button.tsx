@@ -4,6 +4,7 @@ import { HeartHandshake, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "@/components/ui/toast";
 import {
   getJoinedEvents,
   removeJoinedEvent,
@@ -37,11 +38,13 @@ export function JoinEventButton({ event }: { event: JoinedEvent }) {
     if (joined) {
       removeJoinedEvent(event._id);
       setJoined(false);
+      toast.add({ title: "Event cancelled", description: `You left ${event.title}.`, type: "success" });
       return;
     }
 
     saveJoinedEvent(event);
     setJoined(true);
+    toast.add({ title: "Event joined", description: `You joined ${event.title}.`, type: "success" });
   }
 
   return (

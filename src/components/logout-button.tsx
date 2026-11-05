@@ -4,6 +4,7 @@ import { LogOut, LoaderCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { authClient } from "@/lib/auth-client"
+import { toast } from "@/components/ui/toast"
 
 type LogoutButtonProps = {
   className?: string
@@ -32,6 +33,7 @@ export function LogoutButton({ className = "", onComplete }: LogoutButtonProps) 
       }
 
       onComplete?.()
+      toast.add({ title: "Logged out successfully", description: "See you again soon.", type: "success" })
       router.replace("/")
       router.refresh()
     } catch {

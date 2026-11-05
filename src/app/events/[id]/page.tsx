@@ -11,6 +11,8 @@ import {
   UsersRound,
 } from "lucide-react";
 import { JoinEventButton } from "@/components/join-event-button";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 type EventDetails = {
   _id: string;
@@ -41,11 +43,13 @@ function formatDate(date: string) {
 }
 
 async function getEvent(id: string): Promise<EventDetails> {
-  const response = await fetch(`http://localhost:5000/events/${id}`, {
-    headers: {
-      authorization: 'user login in'
-    }
+
+
+  const token = await auth.api.getToken({
+    headers: await headers()
   });
+
+  const response = await fetch(`http://localhost:5000/events/${id}`);
 
   if (!response.ok) throw new Error("Unable to load this event");
 
@@ -90,7 +94,10 @@ export default async function EventDetailsPage({
   const organizer = event.organizer || "UnityUp Community";
   const organizerEmail = event.organizerEmail || "community@unityup.org";
   const joined = event.volunteersJoined ?? 2;
-  const volunteers = event.volunteers ?? ["Community volunteer", "UnityUp member"];
+  const volunteers = event.volunteers ?? [
+    "Community volunteer",
+    "UnityUp member",
+  ];
 
   return (
     <main className="event-details-page min-h-screen bg-[#f6fafb] px-4 py-6 text-[#071337] sm:px-8 sm:py-7">
@@ -99,7 +106,8 @@ export default async function EventDetailsPage({
           href="/events"
           className="inline-flex items-center gap-1.5 text-[10px] font-medium text-[#385170] transition-colors hover:text-[#C70013]"
         >
-          <ArrowLeft className="size-3.5 text-[#C70013]" /> Back to Upcoming Events
+          <ArrowLeft className="size-3.5 text-[#C70013]" /> Back to Upcoming
+          Events
         </Link>
 
         <section className="mt-7 overflow-hidden rounded-[18px] border border-[#dce5e8] bg-white shadow-[0_12px_24px_rgba(24,42,50,0.16)]">
@@ -111,7 +119,8 @@ export default async function EventDetailsPage({
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/5" />
             <span className="absolute left-5 top-5 inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold text-[#243047] shadow-sm">
-              <Tag className="size-3 text-[#C70013]" /> {event.type || "Community Drive"}
+              <Tag className="size-3 text-[#C70013]" />{" "}
+              {event.type || "Community Drive"}
             </span>
             <div className="relative z-10 p-5 sm:p-6">
               <h1 className="max-w-[600px] text-[26px] font-black leading-tight tracking-[-0.04em] text-white sm:text-[29px]">
@@ -119,10 +128,12 @@ export default async function EventDetailsPage({
               </h1>
               <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1.5 text-[10px] font-medium text-white">
                 <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="size-3.5 text-[#C70013]" /> {event.location}
+                  <MapPin className="size-3.5 text-[#C70013]" />{" "}
+                  {event.location}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <CalendarDays className="size-3.5 text-[#C70013]" /> {formatDate(event.date)}
+                  <CalendarDays className="size-3.5 text-[#C70013]" />{" "}
+                  {formatDate(event.date)}
                 </span>
               </div>
             </div>
@@ -138,7 +149,9 @@ export default async function EventDetailsPage({
                   <p className="text-[12px] font-extrabold text-[#071337]">
                     {joined} Volunteers Joined
                   </p>
-                  <p className="text-[10px] text-[#667b8b]">Sign up to join hands for this drive</p>
+                  <p className="text-[10px] text-[#667b8b]">
+                    Sign up to join hands for this drive
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2 self-end sm:self-auto">
@@ -155,39 +168,74 @@ export default async function EventDetailsPage({
 
             <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_217px]">
               <article>
-                <h2 className="text-[14px] font-extrabold">About this Social Initiative</h2>
+                <h2 className="text-[14px] font-extrabold">
+                  About this Social Initiative
+                </h2>
                 <p className="mt-4 text-[11px] leading-relaxed text-[#60798b]">
-                  {event.description || "Join us in making a positive difference in the community."}
+                  {event.description ||
+                    "Join us in making a positive difference in the community."}
                 </p>
                 <div className="my-4 border-t border-[#dce5e8]" />
                 <h3 className="text-[10px] font-bold uppercase tracking-wide text-[#55748a]">
                   Volunteer Guidelines
                 </h3>
                 <ul className="mt-2 space-y-1.5 text-[10px] leading-relaxed text-[#60798b]">
-                  <li className="flex gap-2"><span className="text-[#C70013]">•</span> Please arrive 15 minutes before the scheduled time at the designated location.</li>
-                  <li className="flex gap-2"><span className="text-[#C70013]">•</span> Wear comfortable clothing suitable for physical social work and distribution.</li>
-                  <li className="flex gap-2"><span className="text-[#C70013]">•</span> Bring any pre-coordinated items requested by the organizer.</li>
+                  <li className="flex gap-2">
+                    <span className="text-[#C70013]">•</span> Please arrive 15
+                    minutes before the scheduled time at the designated
+                    location.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#C70013]">•</span> Wear comfortable
+                    clothing suitable for physical social work and distribution.
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#C70013]">•</span> Bring any
+                    pre-coordinated items requested by the organizer.
+                  </li>
                 </ul>
               </article>
 
               <aside className="space-y-4">
                 <div className="rounded-xl border border-[#dce5e8] p-4">
-                  <h3 className="text-[10px] font-bold uppercase tracking-wide text-[#55748a]">Initiative Organizer</h3>
+                  <h3 className="text-[10px] font-bold uppercase tracking-wide text-[#55748a]">
+                    Initiative Organizer
+                  </h3>
                   <div className="mt-3 flex items-center gap-2">
-                    <span className="flex size-8 items-center justify-center rounded-full bg-[#dff7f5] text-[#C70013]"><UserRound className="size-4" /></span>
+                    <span className="flex size-8 items-center justify-center rounded-full bg-[#dff7f5] text-[#C70013]">
+                      <UserRound className="size-4" />
+                    </span>
                     <div className="min-w-0">
-                      <p className="truncate text-[11px] font-bold">{organizer}</p>
-                      <p className="flex items-center gap-1 truncate text-[9px] text-[#60798b]"><Mail className="size-2.5 text-[#C70013]" /> {organizerEmail}</p>
+                      <p className="truncate text-[11px] font-bold">
+                        {organizer}
+                      </p>
+                      <p className="flex items-center gap-1 truncate text-[9px] text-[#60798b]">
+                        <Mail className="size-2.5 text-[#C70013]" />{" "}
+                        {organizerEmail}
+                      </p>
                     </div>
                   </div>
-                  <div className="mt-3 border-t border-[#dce5e8] pt-2 text-[9px] text-[#60798b]"><Check className="mr-1 inline size-3 text-[#C70013]" /> Verified Platform Member</div>
+                  <div className="mt-3 border-t border-[#dce5e8] pt-2 text-[9px] text-[#60798b]">
+                    <Check className="mr-1 inline size-3 text-[#C70013]" />{" "}
+                    Verified Platform Member
+                  </div>
                 </div>
 
                 <div className="rounded-xl border border-[#dce5e8] p-4">
-                  <h3 className="text-[10px] font-bold uppercase tracking-wide text-[#55748a]">Confirmed Volunteers ({volunteers.length})</h3>
+                  <h3 className="text-[10px] font-bold uppercase tracking-wide text-[#55748a]">
+                    Confirmed Volunteers ({volunteers.length})
+                  </h3>
                   <div className="mt-3 space-y-2">
                     {volunteers.slice(0, 3).map((volunteer) => (
-                      <p key={volunteer} className="flex items-center gap-2 text-[10px] font-medium"><span className="flex size-5 items-center justify-center rounded-full bg-[#e8eef2] text-[#C70013]"><UserRound className="size-3" /></span>{volunteer}</p>
+                      <p
+                        key={volunteer}
+                        className="flex items-center gap-2 text-[10px] font-medium"
+                      >
+                        <span className="flex size-5 items-center justify-center rounded-full bg-[#e8eef2] text-[#C70013]">
+                          <UserRound className="size-3" />
+                        </span>
+                        {volunteer}
+                      </p>
                     ))}
                   </div>
                 </div>

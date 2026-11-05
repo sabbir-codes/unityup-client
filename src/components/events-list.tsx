@@ -45,7 +45,7 @@ export async function EventsList() {
   let events: Event[] = [];
 
   try {
-    const response = await fetch("http://localhost:5000/events");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`);
     if (!response.ok) throw new Error("Unable to load events");
 
     const data: Event[] | { events?: Event[] } = await response.json();

@@ -51,7 +51,7 @@ async function getEvent(id: string): Promise<EventDetails> {
 
   console.log(jwtToken?.token); 
 
-  const response = await fetch(`http://localhost:5000/events/${id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, {
     headers: {
       authorization: jwtToken?.token,
     },

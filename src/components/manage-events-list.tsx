@@ -386,7 +386,7 @@ export function ManageEventsList({
         onClose={() => setEditingEvent(null)}
         onSave={async (updatedEvent) => {
           const response = await fetch(
-            `http://localhost:5000/events/${updatedEvent._id}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/events/${updatedEvent._id}`,
             {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
@@ -421,7 +421,7 @@ export function ManageEventsList({
           if (!deletingEvent) return;
 
           const response = await fetch(
-            `http://localhost:5000/events/${deletingEvent._id}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/events/${deletingEvent._id}`,
             {
               method: "DELETE",
             },
@@ -447,7 +447,7 @@ export function ManageEventsContainer() {
   useEffect(() => {
     const loadEvents = async () => {
       try {
-        const response = await fetch("http://localhost:5000/events");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`);
         if (!response.ok) throw new Error("Unable to load events");
         const data: Event[] | { events?: Event[] } = await response.json();
         setEvents(Array.isArray(data) ? data : (data.events ?? []));

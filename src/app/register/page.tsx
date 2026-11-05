@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { authClient } from "@/lib/auth-client"
+import { GoogleAuthButton } from "@/components/google-auth-button"
 import {
   ArrowRight,
   Eye,
@@ -98,7 +99,14 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        <form className="mt-[23px] space-y-[13px]" onSubmit={handleSubmit}>
+        <div className="mt-[23px]">
+          <GoogleAuthButton />
+          <div className="my-4 flex items-center gap-2 text-[9px] text-[#91a2b2]">
+            <span className="h-px flex-1 bg-[#e5eaf0]" /> or register with email <span className="h-px flex-1 bg-[#e5eaf0]" />
+          </div>
+        </div>
+
+        <form className="space-y-[13px]" onSubmit={handleSubmit}>
           <FormField label="Full Name" htmlFor="name">
             <InputWithIcon
               icon={<UserRound />}

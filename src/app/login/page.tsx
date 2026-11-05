@@ -4,6 +4,7 @@ import { ArrowRight, HeartHandshake, LockKeyhole, Mail } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState, type FormEvent } from "react"
 import { authClient } from "@/lib/auth-client"
+import { GoogleAuthButton } from "@/components/google-auth-button"
 
 const accent = "#C70013"
 
@@ -50,7 +51,14 @@ export default function LoginPage() {
           <p className="mt-1 text-[11px] text-[#60798b]">Log in to continue making a difference</p>
         </div>
 
-        <form className="mt-[23px] space-y-[15px]" onSubmit={handleSubmit}>
+        <div className="mt-[23px]">
+          <GoogleAuthButton />
+          <div className="my-4 flex items-center gap-2 text-[9px] text-[#91a2b2]">
+            <span className="h-px flex-1 bg-[#e5eaf0]" /> or continue with email <span className="h-px flex-1 bg-[#e5eaf0]" />
+          </div>
+        </div>
+
+        <form className="space-y-[15px]" onSubmit={handleSubmit}>
           <label className="block text-[9px] font-bold" htmlFor="email">Email Address</label>
           <div className="relative -mt-[11px]">
             <Mail className="absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-[#60798b]" />

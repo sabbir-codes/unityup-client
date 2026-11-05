@@ -13,9 +13,7 @@ type Event = {
 
 async function getUpcomingEvents(): Promise<Event[]> {
   try {
-    const response = await fetch("http://localhost:5000/events", {
-      cache: "no-store",
-    });
+    const response = await fetch("http://localhost:5000/events");
     if (!response.ok) throw new Error("Unable to load events");
 
     const data: Event[] | { events?: Event[] } = await response.json();

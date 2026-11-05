@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UnityUp
+
+UnityUp is a community-driven social development platform that connects people with meaningful local volunteer events. Discover a cause, join an initiative, and work together to create positive change.
+
+## Live Site
+
+Visit the client application: **[UnityUp Live](https://unityup-client.vercel.app)**
+
+## Features
+
+- Browse upcoming community events with real-time event data loaded from the backend.
+- View detailed event information, organizers, locations, dates, and volunteer guidelines.
+- Create, manage, and join community service events.
+- Email/password registration and login powered by Better Auth.
+- Google OAuth login and registration with automatic session creation.
+- User profile avatars are displayed from the registered profile photo URL.
+- Protected event-management routes require an authenticated account.
+- Join and cancel event participation with instant ShadCN toast notifications.
+- Responsive interface designed for desktop, tablet, and mobile screens.
+
+## Tech Stack
+
+- Next.js App Router and React
+- TypeScript
+- Tailwind CSS 4 and ShadCN UI components
+- Better Auth with MongoDB
+- Lucide React icons
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies using the committed lockfile:
+
+```bash
+npm install
+```
+
+Create a `.env` file with the values from `.env.example`, then start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application requires Better Auth and MongoDB configuration. Google authentication additionally requires Google OAuth credentials. For local development, configure this callback URL in Google Cloud:
 
-## Learn More
+```text
+http://localhost:3000/api/auth/callback/google
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Validation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run linting and a production build before deployment:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run build
+```

@@ -42,7 +42,9 @@ function formatDate(date: string) {
 
 async function getEvent(id: string): Promise<EventDetails> {
   const response = await fetch(`http://localhost:5000/events/${id}`, {
-    cache: "no-store",
+    headers: {
+      authorization: 'user login in'
+    }
   });
 
   if (!response.ok) throw new Error("Unable to load this event");

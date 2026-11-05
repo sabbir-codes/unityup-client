@@ -10,8 +10,21 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ProfileMenu } from "@/components/profile-menu";
 import { LogoutButton } from "@/components/logout-button";
+import { authClient } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-export function Navbar() {
+export async function Navbar() {
+
+  // const { data, error } = await authClient.token();
+  // console.log(data)
+
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  console.log(token);
+
   return (
     <header className="site-navbar fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-8">
       <nav className="mx-auto flex h-18 max-w-full items-center justify-between rounded-full border border-slate-100 bg-white/95 px-4 shadow-[0_8px_24px_rgba(20,31,61,0.12)] backdrop-blur sm:px-7">
